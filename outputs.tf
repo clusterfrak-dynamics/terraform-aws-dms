@@ -17,3 +17,8 @@ output "dms_replication_subnet_group_vpc_id" {
 output "dms_endpoints_arns" {
   value = values(aws_dms_endpoint.dms-endpoints)[*].endpoint_arn
 }
+
+output "dms_security_group_id" {
+  value = var.dms_create_default_sg ? aws_security_group.dms-sg[0].id : ""
+}
+
