@@ -18,6 +18,10 @@ output "dms_endpoints_arns" {
   value = values(aws_dms_endpoint.dms-endpoints)[*].endpoint_arn
 }
 
+output "dms_endpoints_arn_map" {
+  value = { for key in keys(var.dms_endpoints) : key => aws_dms_endpoint.dms-endpoints[key].endpoint_arn }
+}
+
 output "dms_security_group_id" {
   value = var.dms_create_default_sg ? aws_security_group.dms-sg[0].id : ""
 }
